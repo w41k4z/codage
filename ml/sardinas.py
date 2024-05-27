@@ -54,7 +54,8 @@ def is_code(L: list[str]):
                         df = anomaly + df
                         break
                 i -= 1
-            return False, 'Source: ' + df
+            print('Source: ' + df)
+            return False
 
 def possibilities(i: int, L):
     if i == 0:
@@ -88,8 +89,8 @@ def pop_until_code(L):
     return -1
     
 
-L = ['0', '01', '100', '010']
-# L = ['1', '00', '01', '10']
-# L = ['0', '100', '010']
-print(is_code(L))
-print(pop_until_code(L))
+# L = ['0', '01', '100', '010']
+# # L = ['1', '00', '01', '10']
+# # L = ['0', '100', '010']
+# print(is_code(L))
+# print(pop_until_code(L))

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Code Language Checker</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <form method="POST">
+        <div class="input-section">
+          <input
+            type="text"
+            name="language"
+            placeholder="10101 010 110 1 11010..."
+            value="{{ processed_data[0] }}"
+          />
+          <button class="predict-btn">Predict</button>
+        </div>
+      </form>
+      {% if processed_data[1] %}
+      <div class="results-section">
+        <div class="card">
+          <h3>Sardinas-Patterson Prediction</h3>
+          <img
+            src="{{ url_for('static', filename='images/bg-2.jpg') }}"
+            alt="Sardinas-Patterson Prediction"
+          />
+          <p>{{ processed_data[1][0] }}</p>
+        </div>
+        <div class="card">
+          <h3>AI Model Prediction</h3>
+          <img
+            src="{{ url_for('static', filename='images/bg-1.avif') }}"
+            alt="AI Model Prediction"
+          />
+          <p>{{ processed_data[1][1] }}</p>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>

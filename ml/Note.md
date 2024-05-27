@@ -1,0 +1,5 @@
+- code: 2 500
+  - single element: 248 (max)
+  - fixed length code: 500
+  - random: 752
+  - prefixed language: 1000
