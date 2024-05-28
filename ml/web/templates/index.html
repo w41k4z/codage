@@ -30,7 +30,7 @@
             src="{{ url_for('static', filename='images/bg-2.jpg') }}"
             alt="Sardinas-Patterson Prediction"
           />
-          <p>{{ processed_data[1][0] }}</p>
+          <p class="{{ processed_data[1][0] }}">{{ processed_data[1][0] }}</p>
         </div>
         <div class="card">
           <h3>AI Model Prediction</h3>
@@ -38,7 +38,7 @@
             src="{{ url_for('static', filename='images/bg-1.avif') }}"
             alt="AI Model Prediction"
           />
-          <p>{{ processed_data[1][1] }}</p>
+          <p class="{{ processed_data[1][1] }}">{{ processed_data[1][1] }}</p>
         </div>
       </div>
       {% endif %}

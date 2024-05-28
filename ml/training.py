@@ -13,19 +13,31 @@ def get_numeric_definition(language: list[str]):
     # prefix_count = sum(1 for i in range(len(language)) for j in range(len(language)) if i != j and language[i].startswith(language[j]))
     # suffix_count = sum(1 for i in range(len(language)) for j in range(len(language)) if i != j and language[i].endswith(language[j]))
     
-    # Character frequency distribution
-    char_freq = {'0': 0, '1': 0}
+    # character frequency standard deviation
+    zero_chars = []
+    one_chars = []
+    for word in language:
+        zero = word.count('0')
+        one = word.count('1')
+        zero_chars.append(zero / len(word))
+        one_chars.append(one / len(word))
+    zero_char_freq_std = np.std(zero_chars)
+    one_char_freq_std = np.std(one_chars)
+    
+    # Global character frequency distribution
+    global_char_freq = {'0': 0, '1': 0}
     for word in language:
         for char in word:
-            char_freq[char] += 1
-    
-    max_char_freq = max(char_freq.values())
-    min_char_freq = min(char_freq.values())
-    char_freq_std = np.std(list(char_freq.values()))
+            global_char_freq[char] += 1
+    global_zero_character_freq = global_char_freq['0']
+    global_one_character_freq = global_char_freq['1']
+    char_freq_std = np.std(list(global_char_freq.values()))
     
     return [
         length_mean, length_std, max_length, min_length,
-        max_char_freq, min_char_freq, char_freq_std
+        global_zero_character_freq, global_one_character_freq, char_freq_std,
+        zero_char_freq_std, one_char_freq_std,
+        # prefix_count, suffix_count
     ]
 
 def training():
@@ -58,12 +70,12 @@ def training():
 def prediction():
     from joblib import load
     model = load('model.joblib')
-    language = ['100110', '11', '010001', '1000', '0111']
+    language = '010101 0101'.split()
     # ['11001', '1000100', '010100', '0', '00001']
     # ['11001', '1000100', '010100', '0', '00001']
     numeric_def = get_numeric_definition(language)
     print(is_code(language))
-    print(model.predict(np.array([numeric_def])))
+    print(True if model.predict(np.array([numeric_def]))[0] == 1 else False)
 
 # print(training())
 prediction()

@@ -76,3 +76,16 @@ input[type="text"] {
     height: auto;
     border-radius: 4px;
 }
+
+.card p {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.True {
+    color: rgb(0, 122, 0);
+}
+
+.False {
+    color: rgb(190, 0, 0);
+}
